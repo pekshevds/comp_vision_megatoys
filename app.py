@@ -18,7 +18,7 @@ def get_name_by_faces(faces):
     data = pickle.loads(open("face_enc", "rb").read())
     names = []
     for face in faces:
-        matches = face_recognition.compare_faces(data["encodings"], face)
+        matches = face_recognition.compare_faces(data["faces"], face)
         name = unknown
         if True in matches:
             matchedIdxs = [i for (i, b) in enumerate(matches) if b]
