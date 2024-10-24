@@ -27,7 +27,12 @@ download and install
 https://www.anaconda.com/download
 
 install packages
-pip install opencv-python
+****************
 conda install -c conda-forge dlib
+pip install opencv-python
 pip install face_recognition
 pip install imutils
+pip install fastapi[standard]
+
+http://127.0.0.1:8081/get-mask
+multipart/form-data

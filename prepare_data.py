@@ -9,7 +9,7 @@ def get_images():
     return list(paths.list_images("Images"))
 
 
-def get_people_name_from_path(image_path: str):
+def get_mask_name_from_path(image_path: str):
     return image_path.split(os.path.sep)[-2]
 
 
@@ -22,9 +22,9 @@ def extract_faces(image_path: str):
 def main():
     known_faces = []
     known_names = []
-    for i, imagePath in enumerate(get_images()):
-        name = get_people_name_from_path(imagePath)
-        faces = extract_faces(imagePath)
+    for i, image_path in enumerate(get_images()):
+        name = get_mask_name_from_path(image_path)
+        faces = extract_faces(image_path)
         for face in faces:
             known_faces.append(face)
             known_names.append(name)
