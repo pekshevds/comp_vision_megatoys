@@ -24,5 +24,5 @@ async def get_face_by_image(file: UploadFile = File(...)):
     return {"result": get_name_by_faces(faces)}
 
 
-if __name__ == "__main__":
-    uvicorn.run(app=app, host="127.0.0.1", port=8081)
+# if __name__ == "__main__":
+#     uvicorn.run(app=app, host="0.0.0.0", port=8081)

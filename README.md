@@ -36,3 +36,4 @@ pip install fastapi[standard]
 
 http://127.0.0.1:8081/get-mask
 multipart/form-data
+docker run -i -t -p 8081:8081 continuumio/miniconda3
