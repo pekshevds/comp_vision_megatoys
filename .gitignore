@@ -1,6 +1,7 @@
 Images/
 upload/
 *.jpg
+*.JPG
 conda_activate.bat
 
 # Byte-compiled / optimized / DLL files
