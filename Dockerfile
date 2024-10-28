@@ -9,11 +9,11 @@ RUN pip install python-dotenv
 RUN pip install fastapi[standard]
 
 RUN mkdir upload
+RUN mkdir data
 
 COPY settings.py .
 COPY server.py .
 COPY ./services ./services
-COPY ./data ./data
 
 EXPOSE 8000
 
