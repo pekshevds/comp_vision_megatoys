@@ -6,15 +6,15 @@ RUN pip install opencv-python
 RUN pip install face_recognition
 RUN pip install imutils
 RUN pip install python-dotenv
-RUN pip install django
+RUN pip install fastapi[standard]
 
-COPY lib.py .
-COPY face_enc .
-COPY manage.py .
-COPY ./server ./server
-COPY ./index ./index
-COPY ./upload ./upload
+RUN mkdir upload
+
+COPY settings.py .
+COPY server.py .
+COPY ./services ./services
+COPY ./data ./data
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver"]
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000"]
