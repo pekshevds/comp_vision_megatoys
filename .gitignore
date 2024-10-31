@@ -1,3 +1,4 @@
+*.gpg
 data/
 django/
 Images/
