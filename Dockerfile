@@ -4,13 +4,14 @@ WORKDIR /app
 ENV PIP_ROOT_USER_ACTION=ignore
 
 RUN apt-get update && apt-get -y install cmake
-
 RUN pip install --upgrade pip
-RUN pip install dlib
-RUN pip install opencv-python
-RUN pip install face_recognition
-RUN pip install face_recognition_models
-RUN pip install imutils
+
+RUN pip install cmake==3.25
+RUN pip install dlib==19.24.6
+RUN pip install face_recognition_models==0.3.0
+RUN pip install face_recognition==1.3.0
+RUN pip install imutils==0.5.4
+RUN pip install opencv-python==4.10.0.84
 RUN pip install python-dotenv
 RUN pip install fastapi[standard]
 
