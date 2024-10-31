@@ -1,11 +1,15 @@
-FROM continuumio/anaconda3
+FROM python:3
 WORKDIR /app
 
-RUN conda install -n base libarchive -c main --force-reinstall
-RUN conda install -n base conda-libmamba-solver --solver=classic
-RUN conda install -c conda-forge dlib
+ENV PIP_ROOT_USER_ACTION=ignore
+
+RUN apt-get update && apt-get -y install cmake
+
+RUN pip install --upgrade pip
+RUN pip install dlib
 RUN pip install opencv-python
 RUN pip install face_recognition
+RUN pip install face_recognition_models
 RUN pip install imutils
 RUN pip install python-dotenv
 RUN pip install fastapi[standard]
