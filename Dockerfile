@@ -1,17 +1,38 @@
-FROM python:3
+FROM ubuntu:22.04
+# FROM python:latest
+
+# update and install dependencies
+# RUN apt-get update && apt-get install -y cmake
+# RUN apt-get install build-essential cmake
+# RUN apt-get install libopenblas-dev liblapack-dev
+# RUN apt-get install libx11-dev libgtk-3-dev
+# RUN apt-get install python python-dev python-pip
+# RUN apt-get install python3 python3-dev python3-pip
+
+RUN apt-get install -y \
+	build-essential \
+	libopenblas-dev \
+	liblapack-dev \
+	libx11-dev \
+	libgtk-3-dev \
+	libboost-all-dev
+
 WORKDIR /app
-
 ENV PIP_ROOT_USER_ACTION=ignore
-
-RUN apt-get update && apt-get -y install cmake
-RUN pip install --upgrade pip
-
-RUN pip install cmake==3.25
-RUN pip install dlib==19.24.6
-RUN pip install face_recognition_models==0.3.0
-RUN pip install face_recognition==1.3.0
-RUN pip install imutils==0.5.4
-RUN pip install opencv-python==4.10.0.84
+# RUN python3 -m venv .venv && source .venv/bin/activate
+# RUN pip install --upgrade pip
+# RUN pip install cmake==3.25
+# RUN pip3 install cmake
+# RUN pip install dlib
+# RUN pip3 install face_recognition_models==0.3.0
+# RUN pip install face_recognition==1.3.0
+RUN pip install cmake==3.27.5
+RUN pip install distlib==0.3.7
+RUN pip install dlib==19.24.2
+RUN pip install face_recognition
+# RUN pip3 install imutils==0.5.4
+RUN pip install opencv-python
+# RUN pip install dlib
 RUN pip install python-dotenv
 RUN pip install fastapi[standard]
 
