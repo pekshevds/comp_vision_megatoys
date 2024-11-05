@@ -9,7 +9,7 @@ FROM python:3.12-slim
 # RUN apt-get install python python-dev python-pip
 # RUN apt-get install python3 python3-dev python3-pip
 RUN apt-get update &&  apt-get install -y \
-	build-essential
+	build-essential ffmpeg libsm6 libgl1 libxext6 python3-opencv
 #	libopenblas-dev \
 #	liblapack-dev \
 #	libx11-dev \
@@ -46,6 +46,7 @@ RUN pip install -r /app/requirements.txt
 COPY settings.py /app/settings.py
 COPY server.py /app/server.py
 COPY ./services /app/services
+COPY ./data /app/data
 
 EXPOSE 8000
 
