@@ -5,8 +5,15 @@ import cv2
 from settings import DATA_URL
 
 
-def prepare_image(image_name: str) -> Any:
-    return cv2.imread(image_name)
+class ImreadException(Exception):
+    pass
+
+
+def prepare_image(image_name: str) -> Any | None:
+    try:
+        return cv2.imread(image_name)
+    except ImreadException:
+        return None
 
 
 def fetch_faces_from_image(image) -> list[Any] | None:

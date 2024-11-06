@@ -1,6 +1,6 @@
-# import os
-from fastapi import FastAPI, UploadFile, File
-from settings import UPLOAD_FOLDER
+from fastapi import FastAPI, UploadFile, File, Request
+from fastapi.responses import HTMLResponse
+from settings import UPLOAD_FOLDER, templates
 from services import save_file
 from services.lib import prepare_image, fetch_faces_from_image, get_name_by_faces
 
@@ -8,9 +8,17 @@ from services.lib import prepare_image, fetch_faces_from_image, get_name_by_face
 app = FastAPI()
 
 
+@app.get("/", response_class=HTMLResponse)
+def index(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={"title": "index"},
+    )
+
+
 @app.post("/get-mask")
 async def get_face_by_image(file: UploadFile = File(...)):
-    # image_name = os.path.join(UPLOAD_FOLDER, str(file.filename))
     filename = UPLOAD_FOLDER / str(file.filename)
     save_file(file, str(filename))
     image = prepare_image(filename)

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form action="/get-mask/" method="post" enctype="multipart/form-data">
+                <div class="col">
+                    <label for="file">Выберите файл</label>
+                    <input type="file" name="file" id="file" accept=".jpg,.jpeg">
+                </div>
+                <div class="col">
+                    <input type="submit" value="upload">
+                </div>
+            </form>
+        </div>        
+    </div>
+</div>
+{% endblock %}
