@@ -1,5 +1,5 @@
 import sys
-from services.lib import prepare_image, fetch_faces_from_image, get_name_by_faces
+from services.cv import prepare_image, fetch_faces_from_image, get_name_by_faces
 
 
 def get_image_name():

@@ -1,7 +1,13 @@
+from typing import Any
+from pathlib import Path
 from fastapi import UploadFile
+from settings import UPLOAD_FOLDER
 
 
-def save_file(file: UploadFile, filename: str) -> None:
-    content = file.file.read()
+def save_file(file: UploadFile, filename: Path | str):
+    save_photo(file.file.read(), UPLOAD_FOLDER / filename)
+
+
+def save_photo(binary: Any, filename: Path | str):
     with open(filename, "wb") as f:
-        f.write(content)
+        f.write(binary)
