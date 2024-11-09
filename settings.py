@@ -7,8 +7,3 @@ UPLOAD_FOLDER = BASE_DIR / "upload"
 DATA_URL = BASE_DIR / "data/face_enc"
 ALLOWED_EXTENSIONS = {"jpg", "jpeg"}
 PHOTO_NAME = BASE_DIR / "image.jpg"
-CAMERA_SETTINGS = {
-    "camera_ip": "172.13.1.114",
-    "username": "admin",
-    "password": "1qazXSW@",
-}
