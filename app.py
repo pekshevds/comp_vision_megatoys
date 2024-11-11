@@ -1,5 +1,5 @@
 import sys
-from services.cv import prepare_image, fetch_faces_from_image, get_name_by_faces
+from utils.cv import prepare_image, fetch_masks_from_image, get_art_by_masks
 
 
 def get_image_name():
@@ -12,9 +12,9 @@ def get_image_name():
 def main():
     image_name = get_image_name()
     image = prepare_image(image_name)
-    faces = fetch_faces_from_image(image)
-    if faces:
-        print(f"the face in {image_name} belongs to {get_name_by_faces(faces)}")
+    masks = fetch_masks_from_image(image)
+    if masks:
+        print(f"the mask in {image_name} belongs to {get_art_by_masks(masks)}")
     print("there is no faces")
 
 

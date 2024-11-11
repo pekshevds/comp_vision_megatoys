@@ -11,7 +11,7 @@ def get_images() -> list[Any]:
     return list(paths.list_images("Images"))
 
 
-def get_mask_name_from_path(image_path: str) -> str:
+def get_mask_art_from_path(image_path: str) -> str:
     return image_path.split(os.path.sep)[-2]
 
 
@@ -25,15 +25,15 @@ def extract_faces(image_path: str) -> list[Any] | None:
 
 
 def main():
-    known_faces = []
-    known_names = []
-    for i, image_path in enumerate(get_images()):
-        name = get_mask_name_from_path(image_path)
-        faces = extract_faces(image_path)
-        for face in faces:
-            known_faces.append(face)
-            known_names.append(name)
-    data = {"faces": known_faces, "names": known_names}
+    known_masks = []
+    known_arts = []
+    for _, image_path in enumerate(get_images()):
+        art = get_mask_art_from_path(image_path)
+        masks = extract_faces(image_path)
+        for mask in masks:
+            known_masks.append(mask)
+            known_arts.append(art)
+    data = {"masks": known_masks, "arts": known_arts}
     with open(DATA_URL, "wb") as f:
         f.write(pickle.dumps(data))
 

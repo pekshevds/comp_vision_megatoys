@@ -3,9 +3,9 @@ from pydantic import BaseModel
 from fastapi import FastAPI, UploadFile, File, Request, Body
 from fastapi.responses import HTMLResponse, Response
 from settings import templates, PHOTO_NAME
-from services import save_file, save_photo
-from services.cv import prepare_image, fetch_faces_from_image, get_name_by_faces
-from services.camera import get_photo_from_camera
+from utils import save_file, save_photo
+from utils.cv import prepare_image, fetch_masks_from_image, get_art_by_masks
+from utils.camera import get_photo_from_camera
 
 
 app = FastAPI()
@@ -32,10 +32,10 @@ def get_mask_by_image_from_file(file: UploadFile = File(...)):
     image = prepare_image(PHOTO_NAME)
     if image is None:
         return {"result": "error"}
-    faces = fetch_faces_from_image(image)
+    faces = fetch_masks_from_image(image)
     if faces is None:
         return {"result": "error"}
-    return {"result": get_name_by_faces(faces)}
+    return {"result": get_art_by_masks(faces)}
 
 
 @app.get("/get-mask-from-camera")
@@ -51,10 +51,10 @@ def get_mask_by_image_from_camera(camera_settings: Annotated[CameraSettings, Bod
     image = prepare_image(PHOTO_NAME)
     if image is None:
         return {"result": "error"}
-    faces = fetch_faces_from_image(image)
+    faces = fetch_masks_from_image(image)
     if faces is None:
         return {"result": "error"}
-    return {"result": get_name_by_faces(faces)}
+    return {"result": get_art_by_masks(faces)}
 
 
 @app.get("/get-image-from-camera")

@@ -7,13 +7,13 @@ WORKDIR /app
 RUN mkdir /app/upload
 RUN mkdir /app/data
 
-RUN pip install dlib==19.24.2
+# RUN pip install dlib==19.24.2
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
 
 COPY settings.py /app/settings.py
 COPY server.py /app/server.py
-COPY ./services /app/services
+COPY ./utils /app/utils
 COPY ./data /app/data
 COPY ./templates /app/templates
 
