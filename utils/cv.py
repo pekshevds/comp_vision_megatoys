@@ -16,9 +16,9 @@ def prepare_image(image_name: str) -> Any | None:
         return None
 
 
-def fetch_masks_from_image(image) -> list[Any] | None:
+def fetch_masks_from_image(prepare_image) -> list[Any] | None:
     try:
-        rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        rgb = cv2.cvtColor(prepare_image, cv2.COLOR_BGR2RGB)
         return face_recognition.face_encodings(rgb)
     except cv2.error:
         return None

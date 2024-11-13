@@ -7,7 +7,6 @@ WORKDIR /app
 RUN mkdir /app/upload
 RUN mkdir /app/data
 
-# RUN pip install dlib==19.24.2
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
 

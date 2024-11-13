@@ -15,7 +15,7 @@ def get_mask_art_from_path(image_path: str) -> str:
     return image_path.split(os.path.sep)[-2]
 
 
-def extract_faces(image_path: str) -> list[Any] | None:
+def extract_masks(image_path: str) -> list[Any] | None:
     try:
         rgb = cv2.cvtColor(cv2.imread(image_path), cv2.COLOR_BGR2RGB)
         boxes = face_recognition.face_locations(rgb, model="hog")
@@ -29,7 +29,7 @@ def main():
     known_arts = []
     for _, image_path in enumerate(get_images()):
         art = get_mask_art_from_path(image_path)
-        masks = extract_faces(image_path)
+        masks = extract_masks(image_path)
         for mask in masks:
             known_masks.append(mask)
             known_arts.append(art)

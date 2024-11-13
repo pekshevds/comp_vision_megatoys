@@ -32,10 +32,10 @@ def get_mask_by_image_from_file(file: UploadFile = File(...)):
     image = prepare_image(PHOTO_NAME)
     if image is None:
         return {"result": "error"}
-    faces = fetch_masks_from_image(image)
-    if faces is None:
+    masks = fetch_masks_from_image(image)
+    if masks is None:
         return {"result": "error"}
-    return {"result": get_art_by_masks(faces)}
+    return {"result": get_art_by_masks(masks)}
 
 
 @app.get("/get-mask-from-camera")
@@ -51,10 +51,10 @@ def get_mask_by_image_from_camera(camera_settings: Annotated[CameraSettings, Bod
     image = prepare_image(PHOTO_NAME)
     if image is None:
         return {"result": "error"}
-    faces = fetch_masks_from_image(image)
-    if faces is None:
+    masks = fetch_masks_from_image(image)
+    if masks is None:
         return {"result": "error"}
-    return {"result": get_art_by_masks(faces)}
+    return {"result": get_art_by_masks(masks)}
 
 
 @app.get("/get-image-from-camera")
