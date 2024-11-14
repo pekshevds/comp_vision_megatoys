@@ -9,23 +9,25 @@ class ImreadException(Exception):
     pass
 
 
-def prepare_image(image_name: str) -> Any | None:
+def prepare_image(image_path: str) -> cv2.typing.MatLike | None:
     try:
-        return cv2.imread(image_name)
+        return cv2.imread(image_path)
     except ImreadException:
         return None
 
 
-def fetch_masks_from_image(prepare_image) -> list[Any] | None:
+def fetch_masks_from_image(prepared_image: cv2.typing.MatLike) -> list[Any] | None:
     try:
-        rgb = cv2.cvtColor(prepare_image, cv2.COLOR_BGR2RGB)
+        rgb = cv2.cvtColor(prepared_image, cv2.COLOR_BGR2RGB)
         return face_recognition.face_encodings(rgb)
     except cv2.error:
         return None
 
 
-def get_art_by_masks(masks) -> str:
+def get_art_by_masks(masks: list[Any] | None) -> str:
     unknown = "Unknown"
+    if not masks:
+        return unknown
     data = pickle.loads(open(DATA_URL, "rb").read())
     arts = []
     for mask in masks:
